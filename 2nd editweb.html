@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supple Sha | Custom Fashion Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .color-option.selected {
+            border-color: #000;
+            transform: scale(1.1);
+        }
+        .customization-preview {
+            transition: all 0.3s ease;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-900">
+                        <span class="text-indigo-600">Supple</span>Sha
+                    </a>
+                </div>
+                
+                <!-- Search -->
+                <div class="flex-1 max-w-xl mx-4 flex items-center">
+                    <div class="w-full">
+                        <div class="relative">
+                            <input type="text" placeholder="Search for designs, fabrics..." 
+                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-indigo-600 text-white p-1 rounded-md">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Design Studio</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Catalog</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Premium</a>
+                </div>
+                
+                <!-- User & Cart -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                    <div class="relative">
+                        <a href="#" class="text-gray-700 hover:text-indigo-600">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <div class="pt-10 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+                    <div class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                        <div class="sm:text-center lg:text-left">
+                            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                                <span class="block">Design Your</span>
+                                <span class="block text-indigo-600">Unique Style</span>
+                            </h1>
+                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                                Custom-made fashion that fits your body and personality. Create, customize, and express yourself.
+                            </p>
+                            <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                                <div class="rounded-md shadow">
+                                    <a href="#design-studio" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                                        Start Designing
+                                    </a>
+                                </div>
+                                <div class="mt-3 sm:mt-0 sm:ml-3">
+                                    <a href="#catalog" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                                        Browse Collection
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5QEwItN-EWOuAOEMk_c27QGzJp-wSBn8oBw&s alt="Fashionable woman wearing customized dress in front of design studio with mannequins and fabric samples" class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" />
+        </div>
+    </div>
+
+    <!-- Featured Categories -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Categories</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Find Your Style
+                </p>
+            </div>
+            
+            <div class="mt-10">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
+                    <!-- Category 1 -->
+                    <div class="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm text-center p-4 hover:shadow-md transition-all">
+                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                            <img src=https://cdn.shopify.com/s/files/1/1322/5151/products/d23-1_282110dd-6401-4e66-892c-449b07c46106_1024x1024.jpg?v=1526036938 alt="Collection of various women's dresses on display with different patterns and fabrics" class="w-full h-full object-center object-cover group-hover:opacity-90">
+                        </div>
+                        <h3 class="mt-4 text-sm font-medium text-gray-900">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Dresses
+                            </a>
+                        </h3>
+                    </div>
+                    
+                    <!-- Category 2 -->
+                    <div class="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm text-center p-4 hover:shadow-md transition-all">
+                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                            <img src=https://evalaxy.com/cdn/shop/products/TOP_209_SQRWEB.jpg?v=1740059829alt="Stylish tops and blouses arranged colorfully on shelves in boutique setting" class="w-full h-full object-center object-cover group-hover:opacity-90">
+                        </div>
+                        <h3 class="mt-4 text-sm font-medium text-gray-900">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Tops
+                            </a>
+                        </h3>
+                    </div>
+                    
+                    <!-- Category 3 -->
+                    <div class="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm text-center p-4 hover:shadow-md transition-all">
+                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                            <img src=https://5.imimg.com/data5/SELLER/Default/2023/7/328609791/TI/VX/UF/3675292/men-suits-500x500.jpg alt="Tailored men's suits displayed with matching shirts and ties in professional attire" class="w-full h-full object-center object-cover group-hover:opacity-90">
+                        </div>
+                        <h3 class="mt-4 text-sm font-medium text-gray-900">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Suits
+                            </a>
+                        </h3>
+                    </div>
+                    
+                    <!-- Category 4 -->
+                    <div class="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm text-center p-4 hover:shadow-md transition-all">
+                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                            <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ1hsPbDhPAV7QJ-9_zxp8VVY6H5lrigxvhg&s alt="Denim jeans in various washes folded neatly in boutique display" class="w-full h-full object-center object-cover group-hover:opacity-90">
+                        </div>
+                        <h3 class="mt-4 text-sm font-medium text-gray-900">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Bottoms
+                            </a>
+                        </h3>
+                    </div>
+                    
+                    <!-- Category 5 -->
+                    <div class="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm text-center p-4 hover:shadow-md transition-all">
+                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                            <img src=https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F11%2Ftenc-outerwear-capsule-collection-holiday-down-jacket-lookbook-0.jpg?fit=max&cbr=1&q=90&w=750&h=500 alt="Outerwear collection including leather jackets, coats and rain gear stylishly arranged" class="w-full h-full object-center object-cover group-hover:opacity-90">
+                        </div>
+                        <h3 class="mt-4 text-sm font-medium text-gray-900">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Outerwear
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Showcase -->
+    <div id="catalog" class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900">Featured Custom Designs</h2>
+                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">View all</a>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Product 1 -->
+                <div class="group product-card relative bg-white p-4 border border-gray-200 rounded-lg shadow-sm transition-all duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                        <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThGPM-vtb6bBFefdw-FFMr3Jujmuh87bJquA&s alt="Custom embroidered summer dress with floral pattern in pastel colors on mannequin" class="w-full h-full object-center object-cover group-hover:opacity-75">
+                        <div class="absolute top-2 right-2 bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded-full">Custom</div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-sm text-gray-700">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Floral Embroidered  Dress
+                            </a>
+                        </h3>
+                        <div class="mt-1 text-sm text-gray-500">
+                            Fully customizable length and pattern
+                        </div>
+                        <div class="mt-1 flex justify-between items-center">
+                            <p class="text-base font-medium text-gray-900">$89.99</p>
+                            <button class="text-indigo-600 hover:text-indigo-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="group product-card relative bg-white p-4 border border-gray-200 rounded-lg shadow-sm transition-all duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                        <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrt_n116eU6eOczhuvv-Kzm4YbjZxHd0Fosw&s alt="Tailored blazer with custom buttons and monogram stitching on hanger with measuring tape" class="w-full h-full object-center object-cover group-hover:opacity-75">
+                        <div class="absolute top-2 right-2 bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded-full">Custom</div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-sm text-gray-700">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Tailored Two-Button Blazer
+                            </a>
+                        </h3>
+                        <div class="mt-1 text-sm text-gray-500">
+                            Choose fabric, buttons, and fit
+                        </div>
+                        <div class="mt-1 flex justify-between items-center">
+                            <p class="text-base font-medium text-gray-900">$129.99</p>
+                            <button class="text-indigo-600 hover:text-indigo-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="group product-card relative bg-white p-4 border border-gray-200 rounded-lg shadow-sm transition-all duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                        <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRORBq9HFh_CLKHA7sBov6ytsEHvBkp5vLsPw&s alt="Personalized denim jacket with paint splatter effect and custom embroidered name on back" class="w-full h-full object-center object-cover group-hover:opacity-75">
+                        <div class="absolute top-2 right-2 bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded-full">Custom</div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-sm text-gray-700">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Personalized Distressed Denim Jacket
+                            </a>
+                        </h3>
+                        <div class="mt-1 text-sm text-gray-500">
+                            Add your name and distress level
+                        </div>
+                        <div class="mt-1 flex justify-between items-center">
+                            <p class="text-base font-medium text-gray-900">$79.99</p>
+                            <button class="text-indigo-600 hover:text-indigo-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="group product-card relative bg-white p-4 border border-gray-200 rounded-lg shadow-sm transition-all duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                        <img src=https://prismic-proxy.imgix.net/seidensticker-b2c/f2934e4b-d53d-4a4c-8ccc-1c8f0d9484a3_SE_Monogramm_Content_1440x1440_3.jpg?auto=compress,format&rect=0,0,1440,1440&w=960&h=960 alt="Linen shirt with custom stitched monogram on the pocket, displayed flat with sewing tools" class="w-full h-full object-center object-cover group-hover:opacity-75">
+                        <div class="absolute top-2 right-2 bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded-full">Custom</div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-sm text-gray-700">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                Custom Monogram Linen Shirt
+                            </a>
+                        </h3>
+                        <div class="mt-1 text-sm text-gray-500">
+                            Select fabric, cut, and stitching style
+                        </div>
+                        <div class="mt-1 flex justify-between items-center">
+                            <p class="text-base font-medium text-gray-900">$59.99</p>
+                            <button class="text-indigo-600 hover:text-indigo-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design Studio Section -->
+    <div id="design-studio" class="py-16 bg-gradient-to-r from-indigo-50 to-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-12">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Supple Studio</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Create Your Custom Design
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Our tools make it easy to design exactly what you want.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-6">
+                        <div class="customization-preview relative h-96 bg-gray-100 rounded-lg overflow-hidden">
+                            <img id="preview-image" src="https://placehold.co/600x900" alt="Base design for custom garment before customization - plain white dress form" class="absolute inset-0 w-full h-full object-contain" />
+                            <div id="design-overlay" class="absolute inset-0"></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-6">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Base Design</h3>
+                                <select id="base-design" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option>Classic Fit Dress</option>
+                                    <option>A-Line Skirt</option>
+                                    <option>Tailored Blazer</option>
+                                    <option>Oversized Shirt</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Fabric</h3>
+                                <div class="grid grid-cols-3 gap-4 mt-4">
+                                    <div>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" name="fabric" value="cotton" checked>
+                                            <span class="ml-2">Cotton</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" name="fabric" value="linen">
+                                            <span class="ml-2">Linen</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" name="fabric" value="silk">
+                                            <span class="ml-2">Silk</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Color</h3>
+                                <div class="flex space-x-4 mt-4">
+                                    <div class="color-option bg-red-500 selected" data-color="red"></div>
+                                    <div class="color-option bg-blue-500" data-color="blue"></div>
+                                    <div class="color-option bg-green-500" data-color="green"></div>
+                                    <div class="color-option bg-yellow-500" data-color="yellow"></div>
+                                    <div class="color-option bg-purple-500" data-color="purple"></div>
+                                    <div class="color-option bg-indigo-500" data-color="indigo"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Add Embellishments</h3>
+                                <select id="embellishments" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option>None</option>
+                                    <option>Embroidery</option>
+                                    <option>Beading</option>
+                                    <option>Sequins</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Personalization</h3>
+                                <input type="text" id="personalization" placeholder="Add name, initials, etc." class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-900">$0.00</span>
+                                <button class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-12">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Testimonials</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Loved by Creatives Worldwide
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQACSKXb3gTV1QhemS33j4_VUDrvZFZlTJMkg&s alt="Portrait of satisfied customer Sarah J. with short curly hair smiling warmly" class="h-12 w-12 rounded-full" />
+                        </div>
+                        <div class="ml-4">
+                            <div class="flex items-center">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium text-gray-900">Sarah J.</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600">
+                            "I designed my dream dress on Supple Sha and it arrived perfectly! The customization options let me create exactly what I wanted. The fabric is high quality and the fit is perfect."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img src=https://m.media-amazon.com/images/I/91RpSKovKML._UY1100_.jpg alt="Portrait of happy customer Michael T. with glasses and beard wearing custom shirt" class="h-12 w-12 rounded-full" />
+                        </div>
+                        <div class="ml-4">
+                            <div class="flex items-center">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium text-gray-900">Michael T.</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600">
+                            "Finally found a place where I could get shirts that actually fit properly. The customization tool is intuitive and the results are amazing. Worth every penny."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img src=https://media.glamourmagazine.co.uk/photos/67c56d45f52e7f1c2e39b85b/16:9/w_1920,h_1080,c_limit/LISA%20OSCARS%20030325%20defaultGettyImages-2202358185.jpg alt="Portrait of happy customer Lisa K. with long hair smiling while wearing custom jacket" class="h-12 w-12 rounded-full" />
+                        </div>
+                        <div class="ml-4">
+                            <div class="flex items-center">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium text-gray-900">Lisa K.</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600">
+                            "Customer service was exceptional when I had questions about my order. The jacket I designed gets compliments everywhere I go. Will definitely be ordering again!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="bg-indigo-700">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center">
+            <div class="lg:w-0 lg:flex-1">
+                <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                    Get Design Inspiration
+                </h2>
+                <p class="mt-3 max-w-3xl text-lg leading-6 text-indigo-200">
+                    Sign up for our newsletter to receive style tips, new fabric options, and exclusive offers.
+                </p>
+            </div>
+            <div class="mt-8 lg:mt-0 lg:ml-8">
+                <form class="sm:flex">
+                    <label for="email-address" class="sr-only">Email address</label>
+                    <input id="email-address" name="email" type="email" autocomplete="email" required class="w-full px-5 py-3 border border-transparent placeholder-gray-500 focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white focus:border-white sm:max-w-xs rounded-md" placeholder="Enter your email">
+                    <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                        <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white">
+                            Notify me
+                        </button>
+                    </div>
+                </form>
+                <p class="mt-3 text-sm text-indigo-200">
+                    We care about your data. Read our
+                    <a href="#" class="text-white font-medium underline">
+                        Privacy Policy
+                    </a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+            <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+                <div class="px-5 py-2">
+                    <a href="#" class="text-base text-gray-300 hover:text-white">
+                        About
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-base text-gray-300 hover:text-white">
+                        Blog
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-base text-gray-300 hover:text-white">
+                        Careers
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-base text-gray-300 hover:text-white">
+                        FAQs
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-base text-gray-300 hover:text-white">
+                        Contact
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-base text-gray-300 hover:text-white">
+                        Terms & Conditions
+                    </a>
+                </div>
+            </nav>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <span class="sr-only">Facebook</span>
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/grandhisrikar2005" class="text-white hover:text-purple-400"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <span class="sr-only">Twitter</span>
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <span class="sr-only">Pinterest</span>
+                    <i class="fab fa-pinterest-p"></i>
+                </a>
+            </div>
+            <p class="mt-8 text-center text-base text-gray-400">
+                &copy; 2025 Supple Sha, Inc. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Color selection
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const color = this.getAttribute('data-color');
+                    document.getElementById('design-overlay').style.backgroundColor = color;
+                    document.getElementById('design-overlay').style.opacity = '0.3';
+                });
+            });
+            
+            // Base design change
+            document.getElementById('base-design').addEventListener('change', function() {
+                // In a real implementation, this would fetch a new base image
+                console.log('Selected base design:', this.value);
+            });
+            
+            // Embellishments change
+            document.getElementById('embellishments').addEventListener('change', function() {
+                // In a real implementation, this would add visual embellishment
+                console.log('Selected embellishment:', this.value);
+            });
+            
+            // Simple cart counter
+            const addToCartButtons = document.querySelectorAll('.product-card button');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartCount = document.querySelector('.fa-shopping-cart + span');
+                    let count = parseInt(cartCount.textContent);
+                    cartCount.textContent = count + 1;
+                    cartCount.classList.add('animate-bounce');
+                    setTimeout(() => {
+                        cartCount.classList.remove('animate-bounce');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
